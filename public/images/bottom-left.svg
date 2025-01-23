@@ -1,0 +1,54 @@
+<svg width="228" height="114" viewBox="0 0 228 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_12_1100)">
+<path d="M38 0L0 38" stroke="#6CACE4"/>
+<path d="M76 0L38 38" stroke="#6CACE4"/>
+<path d="M114 0L76 38" stroke="#6CACE4"/>
+<path d="M152 0L114 38" stroke="#6CACE4"/>
+<path d="M38 28.5L0 66.5" stroke="#6CACE4"/>
+<path d="M76 28.5L38 66.5" stroke="#6CACE4"/>
+<path d="M114 28.5L76 66.5" stroke="#6CACE4"/>
+<path d="M152 28.5L114 66.5" stroke="#6CACE4"/>
+<path d="M38 57L0 95" stroke="#6CACE4"/>
+<path d="M76 57L38 95" stroke="#6CACE4"/>
+<path d="M114 57L76 95" stroke="#6CACE4"/>
+<path d="M152 57L114 95" stroke="#6CACE4"/>
+<path d="M38 85.5L0 123.5" stroke="#6CACE4"/>
+<path d="M76 85.5L38 123.5" stroke="#6CACE4"/>
+<path d="M114 85.5L76 123.5" stroke="#6CACE4"/>
+<path d="M152 85.5L114 123.5" stroke="#6CACE4"/>
+<path d="M38 114L0 152" stroke="#6CACE4"/>
+<path d="M76 114L38 152" stroke="#6CACE4"/>
+<path d="M114 114L76 152" stroke="#6CACE4"/>
+<path d="M152 114L114 152" stroke="#6CACE4"/>
+</g>
+<g clip-path="url(#clip1_12_1100)">
+<path d="M152 0L114 38" stroke="#FFB81C"/>
+<path d="M190 0L152 38" stroke="#FFB81C"/>
+<path d="M228 0L190 38" stroke="#FFB81C"/>
+<path d="M266 0L228 38" stroke="#FFB81C"/>
+<path d="M152 28.5L114 66.5" stroke="#FFB81C"/>
+<path d="M190 28.5L152 66.5" stroke="#FFB81C"/>
+<path d="M228 28.5L190 66.5" stroke="#FFB81C"/>
+<path d="M266 28.5L228 66.5" stroke="#FFB81C"/>
+<path d="M152 57L114 95" stroke="#FFB81C"/>
+<path d="M190 57L152 95" stroke="#FFB81C"/>
+<path d="M228 57L190 95" stroke="#FFB81C"/>
+<path d="M266 57L228 95" stroke="#FFB81C"/>
+<path d="M152 85.5L114 123.5" stroke="#FFB81C"/>
+<path d="M190 85.5L152 123.5" stroke="#FFB81C"/>
+<path d="M228 85.5L190 123.5" stroke="#FFB81C"/>
+<path d="M266 85.5L228 123.5" stroke="#FFB81C"/>
+<path d="M152 114L114 152" stroke="#FFB81C"/>
+<path d="M190 114L152 152" stroke="#FFB81C"/>
+<path d="M228 114L190 152" stroke="#FFB81C"/>
+<path d="M266 114L228 152" stroke="#FFB81C"/>
+</g>
+<defs>
+<clipPath id="clip0_12_1100">
+<rect width="114" height="114" fill="white"/>
+</clipPath>
+<clipPath id="clip1_12_1100">
+<rect width="114" height="114" fill="white" transform="translate(114)"/>
+</clipPath>
+</defs>
+</svg>
