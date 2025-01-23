@@ -34,6 +34,7 @@ export function ChatPage() {
     handleSendUserMessage,
     setUserMsg,
     answerStream,
+    answerLoading,
   } = useDogsChatProvider();
   const { id } = useParams();
 
@@ -132,6 +133,7 @@ export function ChatPage() {
                     });
                   }
                 }}
+                disabled={answerLoading}
               />
               <button
                 onClick={() =>
@@ -140,7 +142,7 @@ export function ChatPage() {
                     session_id: sessionId as string,
                   })
                 }
-                disabled={userMsg === ""}
+                disabled={userMsg === "" || answerLoading}
               >
                 <svg
                   width="24"

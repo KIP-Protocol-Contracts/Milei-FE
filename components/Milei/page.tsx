@@ -6,6 +6,8 @@ import { Strips } from "../Strips";
 import { v4 as uuidv4 } from "uuid";
 
 export const MileiPage = () => {
+  const newSess = uuidv4();
+
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-4">
       <div className="relative mb-10">
@@ -18,7 +20,7 @@ export const MileiPage = () => {
         <div className="absolute left-11 bottom-0 top-0 right-12 border-4 border-blue_1 shadow-lg shadow-mil_orange" />
         <Image src={Milei} alt="milei" height={400} />
       </div>
-      <Link href={`/chat/milei?sessionId=${uuidv4()}`} className="mt-2">
+      <Link href={`/chat/milei?sessionId=${newSess}`} className="mt-2">
         <button className="bg-blue_1 text-white flex items-center gap-2 px-8 py-2">
           <p className="font-semibold">Chatea aquí</p>
           <svg

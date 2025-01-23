@@ -1,9 +1,14 @@
 import { ChatPage } from "@/components/Chat/page";
 import ChatProvider from "@/components/Chat/Provider";
+import { getChatHistory } from "@/repositories/chat-history";
 
-function Page() {
+async function Page({ searchParams }: { searchParams: any }) {
+  const { sessionId } = await searchParams;
+
+  const resp = await getChatHistory({ session_id: sessionId });
+
   return (
-    <ChatProvider>
+    <ChatProvider chatHistory={resp}>
       <ChatPage />
     </ChatProvider>
   );

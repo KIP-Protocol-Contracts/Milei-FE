@@ -1,5 +1,6 @@
 "use client";
 
+import { IChatHistory } from "@/repositories/chat-history";
 import { useParams } from "next/navigation";
 import {
   createContext,
@@ -7,6 +8,7 @@ import {
   SetStateAction,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import useWebSocket from "react-use-websocket";
@@ -29,6 +31,7 @@ interface ContextProps {
   setUserMsg: Dispatch<SetStateAction<string>>;
   answerStream: string;
   setAnswerStream: Dispatch<SetStateAction<string>>;
+  answerLoading: boolean;
 }
 
 const ChatContext = createContext<ContextProps>({
@@ -39,17 +42,34 @@ const ChatContext = createContext<ContextProps>({
   setUserMsg: (): void => {},
   answerStream: "",
   setAnswerStream: (): void => {},
+  answerLoading: false,
 });
 
 export default function ChatProvider({
+  chatHistory,
   children,
 }: {
+  chatHistory: IChatHistory[];
   children: React.ReactNode;
 }) {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [answerStream, setAnswerStream] = useState("");
+  const [answerLoading, setAnswerLoading] = useState(false);
   const [userMsg, setUserMsg] = useState("");
   const { id } = useParams();
+
+  useMemo(() => {
+    if (chatHistory.length === 0) return;
+
+    const hist: IMessage[] = chatHistory.map((c) => {
+      return {
+        sender: c.sender === "bot" ? "milei" : "user",
+        msg: c.message,
+      };
+    });
+
+    setMessages(hist);
+  }, [chatHistory]);
 
   const { sendMessage, lastMessage } = useWebSocket(
     id === "milei"
@@ -71,6 +91,7 @@ export default function ChatProvider({
       ]);
 
       setAnswerStream("");
+      setAnswerLoading(false);
       return;
     }
 
@@ -84,6 +105,8 @@ export default function ChatProvider({
   }, [lastMessage]);
 
   const handleSendUserMessage = async (data: IQuery) => {
+    setAnswerLoading(true);
+
     setMessages([
       ...messages,
       {
@@ -111,6 +134,7 @@ export default function ChatProvider({
         setUserMsg,
         answerStream,
         setAnswerStream,
+        answerLoading,
       }}
     >
       {children}
