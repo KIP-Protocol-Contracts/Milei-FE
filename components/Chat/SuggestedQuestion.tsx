@@ -4,8 +4,8 @@ import { useSearchParams } from "next/navigation";
 import { useDogsChatProvider } from "./Provider";
 
 const suggQuests = [
-  "How can web3 help creators protect their digital ownership?",
-  "Why do we need digital property rights?",
+  "¿Cómo están los perros?",
+  "¿Cuál de las obras de Mises debería leer primero?",
 ];
 
 export const SuggestedQuestion = () => {
