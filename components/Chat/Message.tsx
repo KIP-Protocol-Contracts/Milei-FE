@@ -2,7 +2,7 @@ import moment from "moment";
 import Image, { StaticImageData } from "next/image";
 
 export const UserMessage = ({ msg }: { msg: string }) => {
-  return <div className="p-4 rounded-md bg-light-yellow">{msg}</div>;
+  return <div className="p-4 rounded-md bg-light-yellow text-sm">{msg}</div>;
 };
 
 export const BotMessage = ({
@@ -14,19 +14,28 @@ export const BotMessage = ({
   name: string;
   pfp: string | StaticImageData;
 }) => {
+  if (!msg || msg === "") return null;
+
   const currentTime = moment().format("hh:mm A");
 
   return (
     <div className="flex gap-2">
-      <div className="bg-mil_orange h-[30px] border border-blue_1">
-        <Image src={pfp} alt="dog1" width={30} height={30} />
+      <div className="relative h-[46px] w-[46px]">
+        <div className="absolute inset-0.5 bg-mil_orange border border-blue_1"></div>
+        <Image
+          src={pfp}
+          alt="dog1"
+          width={46}
+          height={46}
+          className="relative"
+        />
       </div>
-      <div>
-        <div className="h-[30px] flex items-baseline gap-2">
+      <div className="w-full">
+        <div className="h-[46px] flex items-center gap-2">
           <p className="font-semibold capitalize">{name}</p>
           <span className="text-[#BCBEC7] text-[10px]">{currentTime}</span>
         </div>
-        <p>{msg}</p>
+        <p className="text-sm text-wrap">{msg}</p>
       </div>
     </div>
   );

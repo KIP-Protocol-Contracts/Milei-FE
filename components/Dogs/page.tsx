@@ -31,8 +31,10 @@ export function DogsPage() {
     <div className="flex flex-col h-screen">
       <div className="flex flex-col items-center border h-full justify-center">
         <div className="relative mb-10">
-          <h1 className="font-bold text-3xl">Meet Milei's Loyal Companions!</h1>
-          <div className="absolute right-1 mt-2 w-[302px]">
+          <h1 className="font-bold text-3xl">
+            Pregúntele al Consejo Económico Canino
+          </h1>
+          <div className="absolute right-0 mt-2 w-[290px]">
             <Strips />
           </div>
         </div>
@@ -49,7 +51,7 @@ export function DogsPage() {
 
         <Link href={"/chat/dogs"}>
           <button className="bg-blue_1 text-white flex items-center gap-2 px-8 py-2">
-            <p className="font-semibold text-sm">Continue to chat</p>
+            <p className="font-semibold text-sm">Chatea aquí</p>
             <svg
               width="17"
               height="17"
@@ -66,7 +68,7 @@ export function DogsPage() {
         </Link>
 
         <Link href={"/"} className="text-blue_1 font-semibold text-sm mt-6">
-          Looking for Milei instead? Switch to his chatbot.
+          ¿Quieres hablar con el profesor Milai? Haz clic aquí.
         </Link>
       </div>
     </div>

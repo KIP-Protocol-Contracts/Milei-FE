@@ -6,11 +6,12 @@ import Milton from "@/public/images/milton.png";
 import Murray from "@/public/images/murray.png";
 import Milei from "@/public/images/Javier Milei.png";
 import { BotMessage, UserMessage } from "./Message";
-import { useParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { SuggestedQuestion } from "./SuggestedQuestion";
 import { useDogsChatProvider } from "./Provider";
 import { Header } from "./Header";
 import { StaticImageData } from "next/image";
+import { v4 as uuidv4 } from "uuid";
 
 const bots = (name: string): StaticImageData | undefined => {
   switch (name) {
@@ -32,9 +33,24 @@ export function ChatPage() {
     userMsg,
     handleSendUserMessage,
     setUserMsg,
-    setChatTo,
+    answerStream,
   } = useDogsChatProvider();
   const { id } = useParams();
+
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+
+  const sessionId = searchParams.get("sessionId");
+
+  useEffect(() => {
+    handleSessionId();
+  }, []);
+
+  const handleSessionId = () => {
+    if (sessionId) return;
+    router.replace(`/chat/${id}?sessionId=${uuidv4()}`);
+  };
 
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -45,20 +61,14 @@ export function ChatPage() {
         behavior: "smooth",
       });
     }
-  }, [messages]);
-
-  useEffect(() => {
-    setChatTo(id as string);
-  }, [id]);
+  }, [messages, answerStream]);
 
   return (
     <div className="h-screen p-10">
       <div className="flex flex-col h-full border-2 border-blue_1 bg-background shadow-md shadow-mil_orange">
         <Header name={id as string} />
         {id === "milei" && (
-          <h1 className="font-bold text-3xl p-3">
-            Chat With <span className="capitalize">{id}</span>
-          </h1>
+          <h1 className="font-bold text-3xl p-3">Pregunta al profesor Milai</h1>
         )}
         <div
           className="flex flex-col flex-grow overflow-y-auto py-4 gap-4"
@@ -82,6 +92,9 @@ export function ChatPage() {
               </div>
             );
           })}
+          <div className="px-3">
+            <BotMessage msg={answerStream} name={"Milei"} pfp={Milei} />
+          </div>
         </div>
 
         <div className="px-3 pt-3">
@@ -108,17 +121,25 @@ export function ChatPage() {
               <input
                 type="text"
                 className="grow bg-transparent border-none outline-none"
-                placeholder="Ask me anything..."
+                placeholder="Pregúntame cualquier cosa..."
                 value={userMsg}
                 onChange={(e) => setUserMsg(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && userMsg !== "") {
-                    handleSendUserMessage(userMsg);
+                    handleSendUserMessage({
+                      query: userMsg,
+                      session_id: sessionId as string,
+                    });
                   }
                 }}
               />
               <button
-                onClick={() => handleSendUserMessage(userMsg)}
+                onClick={() =>
+                  handleSendUserMessage({
+                    query: userMsg,
+                    session_id: sessionId as string,
+                  })
+                }
                 disabled={userMsg === ""}
               >
                 <svg

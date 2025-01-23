@@ -1,26 +1,34 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import {
   createContext,
   Dispatch,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from "react";
+import useWebSocket from "react-use-websocket";
 
 interface IMessage {
   sender: string;
   msg: string;
 }
 
+interface IQuery {
+  query: string;
+  session_id: string;
+}
+
 interface ContextProps {
   messages: IMessage[];
   userMsg: string;
   handleClearMessages: () => void;
-  handleSendUserMessage: (msg: string) => void;
+  handleSendUserMessage: (data: IQuery) => void;
   setUserMsg: Dispatch<SetStateAction<string>>;
-  chatTo: string;
-  setChatTo: Dispatch<SetStateAction<string>>;
+  answerStream: string;
+  setAnswerStream: Dispatch<SetStateAction<string>>;
 }
 
 const ChatContext = createContext<ContextProps>({
@@ -29,8 +37,8 @@ const ChatContext = createContext<ContextProps>({
   handleClearMessages: (): void => {},
   handleSendUserMessage: (): void => {},
   setUserMsg: (): void => {},
-  chatTo: "",
-  setChatTo: (): void => {},
+  answerStream: "",
+  setAnswerStream: (): void => {},
 });
 
 export default function ChatProvider({
@@ -39,42 +47,54 @@ export default function ChatProvider({
   children: React.ReactNode;
 }) {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [answerStream, setAnswerStream] = useState("");
   const [userMsg, setUserMsg] = useState("");
-  const [chatTo, setChatTo] = useState("");
-  const dogs = ["lucas", "murray", "milton"];
+  const { id } = useParams();
 
-  const handleSendUserMessage = async (msg: string) => {
-    const ans = handleAnswer(msg);
+  const { sendMessage, lastMessage } = useWebSocket(
+    id === "milei"
+      ? process.env.NEXT_PUBLIC_MILEI_CHAT_WS!
+      : process.env.NEXT_PUBLIC_DOG_CHAT_WS!
+  );
+
+  const handleStreamAnswer = (data: string) => {
+    if (!data) return;
+    const msg = JSON.parse(data);
+
+    if (msg.end) {
+      setMessages([
+        ...messages,
+        {
+          sender: "milei",
+          msg: msg.message,
+        },
+      ]);
+
+      setAnswerStream("");
+      return;
+    }
+
+    setAnswerStream((prev) => {
+      return prev + msg.message;
+    });
+  };
+
+  useEffect(() => {
+    handleStreamAnswer(lastMessage?.data);
+  }, [lastMessage]);
+
+  const handleSendUserMessage = async (data: IQuery) => {
     setMessages([
       ...messages,
       {
         sender: "user",
-        msg,
+        msg: data.query,
       },
-      ...ans!,
     ]);
 
-    setUserMsg("");
-  };
+    sendMessage(JSON.stringify(data));
 
-  const handleAnswer = (msg: string): IMessage[] | undefined => {
-    switch (chatTo) {
-      case "milei":
-        return [
-          {
-            sender: "milei",
-            msg: msg,
-          },
-        ];
-      case "dogs":
-        const msgs = dogs.map((d) => {
-          return {
-            sender: d,
-            msg: msg,
-          };
-        });
-        return msgs;
-    }
+    setUserMsg("");
   };
 
   const handleClearMessages = () => {
@@ -89,8 +109,8 @@ export default function ChatProvider({
         handleClearMessages,
         handleSendUserMessage,
         setUserMsg,
-        chatTo,
-        setChatTo,
+        answerStream,
+        setAnswerStream,
       }}
     >
       {children}

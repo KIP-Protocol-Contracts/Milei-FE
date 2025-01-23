@@ -3,13 +3,14 @@ import React from "react";
 import Milei from "@/public/images/Javier Milei.png";
 import Image from "next/image";
 import { Strips } from "../Strips";
+import { v4 as uuidv4 } from "uuid";
 
 export const MileiPage = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-4">
       <div className="relative mb-10">
-        <h1 className="font-bold text-4xl">Say Hello to Milei!</h1>
-        <div className="absolute right-1 mt-3 w-32">
+        <h1 className="font-bold text-4xl">Pregunta al profesor Milai</h1>
+        <div className="absolute right-0 mt-3 w-[110px]">
           <Strips />
         </div>
       </div>
@@ -17,9 +18,9 @@ export const MileiPage = () => {
         <div className="absolute left-11 bottom-0 top-0 right-12 border-4 border-blue_1 shadow-lg shadow-mil_orange" />
         <Image src={Milei} alt="milei" height={400} />
       </div>
-      <Link href={"/chat/milei"} className="mt-2">
+      <Link href={`/chat/milei?sessionId=${uuidv4()}`} className="mt-2">
         <button className="bg-blue_1 text-white flex items-center gap-2 px-8 py-2">
-          <p className="font-semibold">Continue to chat</p>
+          <p className="font-semibold">Chatea aquí</p>
           <svg
             width="17"
             height="17"
@@ -36,7 +37,8 @@ export const MileiPage = () => {
       </Link>
 
       <Link href={"/dogs"} className="text-blue_1 font-semibold text-sm mt-4">
-        Want advice from Milei's Dogs? Switch to their chatbot.
+        ¿Quieres recibir asesoramiento del consejo económico canino? Haz clic
+        aquí.
       </Link>
     </div>
   );
