@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
-import { Kode_Mono } from "next/font/google";
-import "./globals.css";
-import UpperRight from "@/public/images/upper-right.svg";
-import BottomLeft from "@/public/images/bottom-left.svg";
-import Image from "next/image";
+import type { Metadata } from 'next';
+import { Kode_Mono } from 'next/font/google';
+import './globals.css';
+import UpperRight from '@/public/images/upper-right.svg';
+import BottomLeft from '@/public/images/bottom-left.svg';
+import Image from 'next/image';
 
 const kodeMono = Kode_Mono({
-  variable: "--font-kode-mono",
-  subsets: ["latin"],
+  variable: '--font-kode-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Milei's Loyal Companion",
+  title: "Milai's Loyal Companion",
 };
 
 export default function RootLayout({

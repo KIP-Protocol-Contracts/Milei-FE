@@ -62,9 +62,9 @@ export default function ChatProvider({
 
   useEffect(() => {
     if (typeof id === 'string') {
-      setAgent(id === 'milei' ? 'milei' : id);
+      setAgent(id === 'milai' ? 'milai' : id);
     } else {
-      setAgent('milei');
+      setAgent('milai');
     }
   }, [id]);
 
@@ -82,7 +82,7 @@ export default function ChatProvider({
   }, [chatHistory]);
 
   const { sendMessage, lastMessage } = useWebSocket(
-    id === 'milei'
+    id === 'milai'
       ? process.env.NEXT_PUBLIC_MILEI_CHAT_WS!
       : process.env.NEXT_PUBLIC_DOG_CHAT_WS!
   );

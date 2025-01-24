@@ -1,11 +1,11 @@
-import Link from "next/link";
-import React from "react";
-import Milei from "@/public/images/Javier Milei.png";
-import Image from "next/image";
-import { Strips } from "../Strips";
-import { v4 as uuidv4 } from "uuid";
+import Link from 'next/link';
+import React from 'react';
+import Milai from '@/public/images/Javier Milai.png';
+import Image from 'next/image';
+import { Strips } from '../Strips';
+import { v4 as uuidv4 } from 'uuid';
 
-export const MileiPage = () => {
+export const MilaiPage = () => {
   const newSess = uuidv4();
 
   return (
@@ -18,9 +18,9 @@ export const MileiPage = () => {
       </div>
       <div className="relative">
         <div className="absolute left-11 bottom-0 top-0 right-12 border-4 border-blue_1 shadow-lg shadow-mil_orange" />
-        <Image src={Milei} alt="milei" height={400} />
+        <Image src={Milai} alt="milai" height={400} />
       </div>
-      <Link href={`/chat/milei?sessionId=${newSess}`} className="mt-2">
+      <Link href={`/chat/milai?sessionId=${newSess}`} className="mt-2">
         <button className="bg-blue_1 text-white flex items-center gap-2 px-8 py-2">
           <p className="font-semibold">Chatea aquí</p>
           <svg
@@ -38,7 +38,7 @@ export const MileiPage = () => {
         </button>
       </Link>
 
-      <Link href={"/dogs"} className="text-blue_1 font-semibold text-sm mt-4">
+      <Link href={'/dogs'} className="text-blue_1 font-semibold text-sm mt-4">
         ¿Quieres recibir asesoramiento del consejo económico canino? Haz clic
         aquí.
       </Link>

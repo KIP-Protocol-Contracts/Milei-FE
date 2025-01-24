@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Lucas from '@/public/images/lucas.png';
 import Milton from '@/public/images/milton.png';
 import Murray from '@/public/images/murray.png';
-import Milei from '@/public/images/Javier Milei.png';
+import Milai from '@/public/images/Javier Milai.png';
 import { BotMessage, UserMessage } from './Message';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { SuggestedQuestion } from './SuggestedQuestion';
@@ -21,8 +21,8 @@ const bots = (name: string): StaticImageData | undefined => {
       return Milton;
     case 'murray':
       return Murray;
-    case 'milei':
-      return Milei;
+    case 'milai':
+      return Milai;
   }
 };
 
@@ -34,7 +34,7 @@ const bgBots = (name: string): string | undefined => {
       return 'bg-blue_1';
     case 'murray':
       return 'bg-background';
-    case 'milei':
+    case 'milai':
       return 'bg-mil_orange';
   }
 };
@@ -61,9 +61,9 @@ export function ChatPage() {
 
   useEffect(() => {
     if (typeof id === 'string') {
-      setAgent(id === 'milei' ? 'milei' : id);
+      setAgent(id === 'milai' ? 'milai' : id);
     } else {
-      setAgent('milei');
+      setAgent('milai');
     }
   }, [id]);
 
@@ -91,10 +91,10 @@ export function ChatPage() {
     <div className="h-screen p-10">
       <div className="flex flex-col h-full border-2 border-blue_1 bg-background shadow-md shadow-mil_orange">
         <Header name={id as string} />
-        {id === 'milei' && (
+        {id === 'milai' && (
           <h1 className="font-bold text-3xl p-3">Pregunta al profesor Milai</h1>
         )}
-        {id !== 'milei' && (
+        {id !== 'milai' && (
           <h1 className="font-bold text-3xl p-3">Chat with {id}</h1>
         )}
         <div

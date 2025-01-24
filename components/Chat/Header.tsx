@@ -1,13 +1,13 @@
-import React from "react";
-import { dogsList } from "../Dogs/page";
-import Image from "next/image";
-import { useParams } from "next/navigation";
-import Milei from "@/public/images/Javier Milei.png";
-import { Strips } from "../Strips";
+import React from 'react';
+import { dogsList } from '../Dogs/page';
+import Image from 'next/image';
+import { useParams } from 'next/navigation';
+import Milai from '@/public/images/Javier Milai.png';
+import { Strips } from '../Strips';
 
 export const Header = ({ name }: { name: string }) => {
-  if (name === "milei") {
-    return <MileiHeader />;
+  if (name === 'milai') {
+    return <MilaiHeader />;
   }
 
   return <DogsHeader />;
@@ -41,7 +41,7 @@ export const DogsHeader = () => {
   );
 };
 
-export const MileiHeader = () => {
+export const MilaiHeader = () => {
   const { id } = useParams();
   return (
     <div className="flex items-center justify-center gap-10 border-b-2 border-b-blue_1 p-4">
@@ -51,7 +51,7 @@ export const MileiHeader = () => {
       <div className="relative flex flex-col items-center gap-4">
         <div className="absolute border-2 border-blue_1 left-2 right-2 top-2 h-[80px] z-0 bg-mil_orange"></div>
         <Image
-          src={Milei}
+          src={Milai}
           alt="dog1"
           width={100}
           height={100}

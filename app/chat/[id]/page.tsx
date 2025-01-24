@@ -9,7 +9,7 @@ async function Page({ params, searchParams }: any) {
   const { id } = params;
   const { sessionId } = searchParams;
 
-  if (id === 'milei') {
+  if (id === 'milai') {
     const resp = await getChatHistory({ session_id: sessionId });
     return (
       <ChatProvider chatHistory={resp}>
