@@ -57,7 +57,7 @@ export const MilaiHeader = () => {
           height={100}
           className="rounded-md relative z-1"
         />
-        <p className="font-bold capitalize">{id}</p>
+        <p className="font-bold capitalize">Profesor {id}</p>
       </div>
       <div className="w-[300px]">
         <Strips />

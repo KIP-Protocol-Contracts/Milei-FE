@@ -36,7 +36,10 @@ export const BotMessage = ({
       </div>
       <div className="w-full">
         <div className="h-[46px] flex items-center gap-2">
-          <p className="font-semibold capitalize">{name}</p>
+          <p className="font-semibold capitalize">
+            {name == 'milai' && 'Profesor'}&nbsp;
+            {name}
+          </p>
           <span className="text-[#BCBEC7] text-[10px]">{currentTime}</span>
         </div>
         <p className="text-sm text-wrap">{msg}</p>
