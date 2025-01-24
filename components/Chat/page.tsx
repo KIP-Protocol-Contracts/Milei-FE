@@ -87,6 +87,10 @@ export function ChatPage() {
     }
   }, [messages, answerStream]);
 
+  const capitalizeFirstLetter = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   return (
     <div className="h-screen p-4 md:p-10">
       <div className="flex flex-col h-full border-2 border-blue_1 bg-background shadow-md shadow-mil_orange">
@@ -97,7 +101,9 @@ export function ChatPage() {
           </h1>
         )}
         {id !== 'milai' && (
-          <h1 className="font-bold text-xl md:text-3xl p-3">Chat with {id}</h1>
+          <h1 className="font-bold text-xl md:text-3xl p-3">
+            Charla con {capitalizeFirstLetter(agent)}
+          </h1>
         )}
         <div
           className="flex flex-col flex-grow overflow-y-auto py-4 gap-4 px-2 md:px-4"
