@@ -88,29 +88,34 @@ export function ChatPage() {
   }, [messages, answerStream]);
 
   return (
-    <div className="h-screen p-10">
+    <div className="h-screen p-4 md:p-10">
       <div className="flex flex-col h-full border-2 border-blue_1 bg-background shadow-md shadow-mil_orange">
         <Header name={id as string} />
         {id === 'milai' && (
-          <h1 className="font-bold text-3xl p-3">Pregunta al profesor Milai</h1>
+          <h1 className="font-bold text-xl md:text-3xl p-3">
+            Pregunta al profesor Milai
+          </h1>
         )}
         {id !== 'milai' && (
-          <h1 className="font-bold text-3xl p-3">Chat with {id}</h1>
+          <h1 className="font-bold text-xl md:text-3xl p-3">Chat with {id}</h1>
         )}
         <div
-          className="flex flex-col flex-grow overflow-y-auto py-4 gap-4"
+          className="flex flex-col flex-grow overflow-y-auto py-4 gap-4 px-2 md:px-4"
           ref={containerRef}
         >
           {messages.map((msg, idx) => {
             if (msg.sender === 'user') {
               return (
-                <div className="flex flex-none flex-row-reverse px-3" key={idx}>
+                <div
+                  className="flex flex-none flex-row-reverse px-2 md:px-3"
+                  key={idx}
+                >
                   <UserMessage msg={msg.msg} />
                 </div>
               );
             }
             return (
-              <div key={idx} className="px-3">
+              <div key={idx} className="px-2 md:px-3">
                 {agent && (
                   <BotMessage
                     msg={msg.msg}
@@ -122,7 +127,7 @@ export function ChatPage() {
               </div>
             );
           })}
-          <div className="px-3">
+          <div className="px-2 md:px-3">
             <BotMessage
               msg={answerStream}
               name={agent}
@@ -132,11 +137,11 @@ export function ChatPage() {
           </div>
         </div>
 
-        <div className="px-3 pt-3">
+        <div className="px-2 md:px-3 pt-3">
           <SuggestedQuestion />
         </div>
 
-        <div className="flex items-center gap-4 w-full p-3">
+        <div className="flex items-center gap-4 w-full p-2 md:p-3">
           <button onClick={handleClearMessages} className="btn btn-square">
             <svg
               width="33"

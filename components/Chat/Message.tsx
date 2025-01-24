@@ -2,7 +2,11 @@ import moment from 'moment';
 import Image, { StaticImageData } from 'next/image';
 
 export const UserMessage = ({ msg }: { msg: string }) => {
-  return <div className="p-4 rounded-md bg-light-yellow text-sm">{msg}</div>;
+  return (
+    <div className="p-4 rounded-md bg-light-yellow text-sm max-w-[80%] md:max-w-[60%] lg:max-w-[50%] ml-auto">
+      {msg}
+    </div>
+  );
 };
 
 export const BotMessage = ({
@@ -22,7 +26,7 @@ export const BotMessage = ({
 
   return (
     <div className="flex gap-2">
-      <div className="relative h-[46px] w-[46px]">
+      <div className="relative h-[46px] w-[46px] flex-shrink-0">
         <div
           className={`absolute inset-0.5 ${bgColor} border border-blue_1`}
         ></div>
