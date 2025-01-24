@@ -26,6 +26,19 @@ const bots = (name: string): StaticImageData | undefined => {
   }
 };
 
+const bgBots = (name: string): string | undefined => {
+  switch (name) {
+    case 'lucas':
+      return 'bg-mil_orange';
+    case 'milton':
+      return 'bg-blue_1';
+    case 'murray':
+      return 'bg-background';
+    case 'milei':
+      return 'bg-mil_orange';
+  }
+};
+
 export function ChatPage() {
   const {
     messages,
@@ -103,6 +116,7 @@ export function ChatPage() {
                     msg={msg.msg}
                     name={agent}
                     pfp={bots(agent) as StaticImageData}
+                    bgColor={bgBots(agent)}
                   />
                 )}
               </div>
@@ -113,6 +127,7 @@ export function ChatPage() {
               msg={answerStream}
               name={agent}
               pfp={bots(agent) as StaticImageData}
+              bgColor={bgBots(agent)}
             />
           </div>
         </div>
