@@ -9,20 +9,24 @@ export const MilaiPage = () => {
   const newSess = uuidv4();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-4">
-      <div className="relative mb-10">
-        <h1 className="font-bold text-4xl">Pregunta al profesor Milai</h1>
-        <div className="absolute right-0 mt-3 w-[110px]">
+    <div className="flex flex-col items-center justify-center h-screen gap-4 p-4">
+      <div className="relative mb-6 md:mb-10 text-center">
+        <h1 className="font-bold text-2xl md:text-4xl">
+          Pregunta al profesor Milai
+        </h1>
+        <div className="absolute right-0 mt-2 md:mt-3 w-[80px] md:w-[110px]">
           <Strips />
         </div>
       </div>
+
       <div className="relative">
-        <div className="absolute left-11 bottom-0 top-0 right-12 border-4 border-blue_1 shadow-lg shadow-mil_orange" />
+        <div className="absolute left-6 md:left-11 bottom-0 top-0 right-6 md:right-12 border-4 border-blue_1 shadow-lg shadow-mil_orange" />
         <Image src={Milai} alt="milai" height={400} />
       </div>
+
       <Link href={`/chat/milai?sessionId=${newSess}`} className="mt-2">
-        <button className="bg-blue_1 text-white flex items-center gap-2 px-8 py-2">
-          <p className="font-semibold">Chatea aquí</p>
+        <button className="bg-blue_1 text-white flex items-center gap-2 px-6 py-2 md:px-8 md:py-2 hover:bg-blue_1/90 transition-colors duration-200">
+          <p className="font-semibold text-sm md:text-base">Chatea aquí</p>
           <svg
             width="17"
             height="17"
@@ -38,7 +42,10 @@ export const MilaiPage = () => {
         </button>
       </Link>
 
-      <Link href={'/dogs'} className="text-blue_1 font-semibold text-sm mt-4">
+      <Link
+        href={'/dogs'}
+        className="text-blue_1 font-semibold text-xs md:text-sm mt-4 text-center hover:underline"
+      >
         ¿Quieres recibir asesoramiento del consejo económico canino? Haz clic
         aquí.
       </Link>

@@ -21,6 +21,7 @@ interface IMessage {
 interface IQuery {
   query: string;
   session_id: string;
+  name: string;
 }
 
 interface ContextProps {
@@ -115,6 +116,7 @@ export default function ChatProvider({
   }, [lastMessage]);
 
   const handleSendUserMessage = async (data: IQuery) => {
+    console.log('🚀 ~ handleSendUserMessage ~ data:', data);
     setAnswerLoading(true);
 
     setMessages([
