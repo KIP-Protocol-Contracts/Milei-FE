@@ -5,13 +5,7 @@ import {
   getChatHistory,
 } from '@/repositories/chat-history';
 
-async function Page({
-  params,
-  searchParams,
-}: {
-  params: { id: string };
-  searchParams: { sessionId: string };
-}) {
+async function Page({ params, searchParams }: any) {
   const { id } = params;
   const { sessionId } = searchParams;
 
