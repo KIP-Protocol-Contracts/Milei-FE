@@ -9,10 +9,12 @@ export const BotMessage = ({
   msg,
   name,
   pfp,
+  bgColor = 'bg-mil_orange',
 }: {
   msg: string;
   name: string;
   pfp: string | StaticImageData;
+  bgColor?: string;
 }) => {
   if (!msg || msg === '') return null;
 
@@ -21,7 +23,9 @@ export const BotMessage = ({
   return (
     <div className="flex gap-2">
       <div className="relative h-[46px] w-[46px]">
-        <div className="absolute inset-0.5 bg-mil_orange border border-blue_1"></div>
+        <div
+          className={`absolute inset-0.5 ${bgColor} border border-blue_1`}
+        ></div>
         <Image
           src={pfp}
           alt="dog1"

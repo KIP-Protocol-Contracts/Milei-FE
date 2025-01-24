@@ -73,7 +73,7 @@ export default function ChatProvider({
 
     const hist: IMessage[] = chatHistory.map((c) => {
       return {
-        sender: c.sender === 'bot' ? 'milei' : 'user',
+        sender: c.sender === 'bot' ? agent : 'user',
         msg: c.message,
       };
     });
@@ -116,8 +116,6 @@ export default function ChatProvider({
 
   const handleSendUserMessage = async (data: IQuery) => {
     setAnswerLoading(true);
-
-    //console.log('🚀 ~ handleSendUserMessage:', data);
 
     setMessages([
       ...messages,

@@ -109,7 +109,11 @@ export function ChatPage() {
             );
           })}
           <div className="px-3">
-            <BotMessage msg={answerStream} name={'Milei'} pfp={Milei} />
+            <BotMessage
+              msg={answerStream}
+              name={agent}
+              pfp={bots(agent) as StaticImageData}
+            />
           </div>
         </div>
 
