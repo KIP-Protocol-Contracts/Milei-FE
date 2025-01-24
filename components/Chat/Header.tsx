@@ -21,18 +21,21 @@ export const DogsHeader = () => {
       </div>
       <div className="flex flex-wrap justify-center gap-4">
         {dogsList.map((dog, idx) => (
-          <div className="relative flex flex-col items-center gap-4" key={idx}>
+          <div
+            className="relative flex flex-col items-center gap-2 sm:gap-4"
+            key={idx}
+          >
             <div
-              className={`absolute border-2 border-blue_1 left-2 right-2 top-2 h-[98px] z-0 ${dog.bgColor}`}
+              className={`absolute border-2 border-blue_1 left-1 right-1 sm:left-2 sm:right-2 top-1 sm:top-2 h-[60px] sm:h-[98px] z-0 ${dog.bgColor}`}
             ></div>
             <Image
               src={dog.image}
               alt="dog1"
-              width={100}
-              height={100}
-              className="rounded-md relative z-1"
+              width={80}
+              height={80}
+              className="rounded-md relative z-1 w-20 h-20 sm:w-24 sm:h-24"
             />
-            <p className="font-bold">{dog.name}</p>
+            <p className="font-bold text-sm sm:text-base">{dog.name}</p>
           </div>
         ))}
       </div>
