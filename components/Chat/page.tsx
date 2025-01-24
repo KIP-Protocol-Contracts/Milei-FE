@@ -169,6 +169,7 @@ export function ChatPage() {
                     handleSendUserMessage({
                       query: userMsg,
                       session_id: sessionId as string,
+                      name: id as string,
                     });
                   }
                 }}
@@ -179,6 +180,7 @@ export function ChatPage() {
                   handleSendUserMessage({
                     query: userMsg,
                     session_id: sessionId as string,
+                    name: id as string,
                   })
                 }
                 disabled={userMsg === '' || answerLoading}
