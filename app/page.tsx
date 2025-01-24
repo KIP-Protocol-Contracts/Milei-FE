@@ -1,5 +1,5 @@
-import { MileiPage } from "@/components/Milei/page";
+import { MilaiPage } from '@/components/Milai/page';
 
 export default function Home() {
-  return <MileiPage />;
+  return <MilaiPage />;
 }

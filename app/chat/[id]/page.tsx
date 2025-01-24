@@ -1,17 +1,29 @@
-import { ChatPage } from "@/components/Chat/page";
-import ChatProvider from "@/components/Chat/Provider";
-import { getChatHistory } from "@/repositories/chat-history";
+import { ChatPage } from '@/components/Chat/page';
+import ChatProvider from '@/components/Chat/Provider';
+import {
+  getChatDogsHistory,
+  getChatHistory,
+} from '@/repositories/chat-history';
 
-async function Page({ searchParams }: { searchParams: any }) {
-  const { sessionId } = await searchParams;
+async function Page({ params, searchParams }: any) {
+  const { id } = params;
+  const { sessionId } = searchParams;
 
-  const resp = await getChatHistory({ session_id: sessionId });
-
-  return (
-    <ChatProvider chatHistory={resp}>
-      <ChatPage />
-    </ChatProvider>
-  );
+  if (id === 'milai') {
+    const resp = await getChatHistory({ session_id: sessionId });
+    return (
+      <ChatProvider chatHistory={resp}>
+        <ChatPage />
+      </ChatProvider>
+    );
+  } else {
+    const resp = await getChatDogsHistory({ session_id: sessionId });
+    return (
+      <ChatProvider chatHistory={resp}>
+        <ChatPage />
+      </ChatProvider>
+    );
+  }
 }
 
 export default Page;

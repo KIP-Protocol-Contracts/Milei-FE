@@ -1,28 +1,41 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
-import Lucas from "@/public/images/lucas.png";
-import Milton from "@/public/images/milton.png";
-import Murray from "@/public/images/murray.png";
-import Milei from "@/public/images/Javier Milei.png";
-import { BotMessage, UserMessage } from "./Message";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { SuggestedQuestion } from "./SuggestedQuestion";
-import { useDogsChatProvider } from "./Provider";
-import { Header } from "./Header";
-import { StaticImageData } from "next/image";
-import { v4 as uuidv4 } from "uuid";
+import React, { useEffect, useRef, useState } from 'react';
+import Lucas from '@/public/images/lucas.png';
+import Milton from '@/public/images/milton.png';
+import Murray from '@/public/images/murray.png';
+import Milai from '@/public/images/Javier Milai.png';
+import { BotMessage, UserMessage } from './Message';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { SuggestedQuestion } from './SuggestedQuestion';
+import { useDogsChatProvider } from './Provider';
+import { Header } from './Header';
+import { StaticImageData } from 'next/image';
+import { v4 as uuidv4 } from 'uuid';
 
 const bots = (name: string): StaticImageData | undefined => {
   switch (name) {
-    case "lucas":
+    case 'lucas':
       return Lucas;
-    case "milton":
+    case 'milton':
       return Milton;
-    case "murray":
+    case 'murray':
       return Murray;
-    case "milei":
-      return Milei;
+    case 'milai':
+      return Milai;
+  }
+};
+
+const bgBots = (name: string): string | undefined => {
+  switch (name) {
+    case 'lucas':
+      return 'bg-mil_orange';
+    case 'milton':
+      return 'bg-blue_1';
+    case 'murray':
+      return 'bg-background';
+    case 'milai':
+      return 'bg-mil_orange';
   }
 };
 
@@ -42,7 +55,17 @@ export function ChatPage() {
 
   const searchParams = useSearchParams();
 
-  const sessionId = searchParams.get("sessionId");
+  const sessionId = searchParams.get('sessionId');
+
+  const [agent, setAgent] = useState<string>('');
+
+  useEffect(() => {
+    if (typeof id === 'string') {
+      setAgent(id === 'milai' ? 'milai' : id);
+    } else {
+      setAgent('milai');
+    }
+  }, [id]);
 
   useEffect(() => {
     handleSessionId();
@@ -59,7 +82,7 @@ export function ChatPage() {
     if (containerRef.current) {
       containerRef.current.scrollTo({
         top: containerRef.current.scrollHeight,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   }, [messages, answerStream]);
@@ -68,15 +91,18 @@ export function ChatPage() {
     <div className="h-screen p-10">
       <div className="flex flex-col h-full border-2 border-blue_1 bg-background shadow-md shadow-mil_orange">
         <Header name={id as string} />
-        {id === "milei" && (
+        {id === 'milai' && (
           <h1 className="font-bold text-3xl p-3">Pregunta al profesor Milai</h1>
+        )}
+        {id !== 'milai' && (
+          <h1 className="font-bold text-3xl p-3">Chat with {id}</h1>
         )}
         <div
           className="flex flex-col flex-grow overflow-y-auto py-4 gap-4"
           ref={containerRef}
         >
           {messages.map((msg, idx) => {
-            if (msg.sender === "user") {
+            if (msg.sender === 'user') {
               return (
                 <div className="flex flex-none flex-row-reverse px-3" key={idx}>
                   <UserMessage msg={msg.msg} />
@@ -85,16 +111,24 @@ export function ChatPage() {
             }
             return (
               <div key={idx} className="px-3">
-                <BotMessage
-                  msg={msg.msg}
-                  name={msg.sender}
-                  pfp={bots(msg.sender) as StaticImageData}
-                />
+                {agent && (
+                  <BotMessage
+                    msg={msg.msg}
+                    name={agent}
+                    pfp={bots(agent) as StaticImageData}
+                    bgColor={bgBots(agent)}
+                  />
+                )}
               </div>
             );
           })}
           <div className="px-3">
-            <BotMessage msg={answerStream} name={"Milei"} pfp={Milei} />
+            <BotMessage
+              msg={answerStream}
+              name={agent}
+              pfp={bots(agent) as StaticImageData}
+              bgColor={bgBots(agent)}
+            />
           </div>
         </div>
 
@@ -126,7 +160,7 @@ export function ChatPage() {
                 value={userMsg}
                 onChange={(e) => setUserMsg(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" && userMsg !== "") {
+                  if (e.key === 'Enter' && userMsg !== '') {
                     handleSendUserMessage({
                       query: userMsg,
                       session_id: sessionId as string,
@@ -142,7 +176,7 @@ export function ChatPage() {
                     session_id: sessionId as string,
                   })
                 }
-                disabled={userMsg === "" || answerLoading}
+                disabled={userMsg === '' || answerLoading}
               >
                 <svg
                   width="24"
