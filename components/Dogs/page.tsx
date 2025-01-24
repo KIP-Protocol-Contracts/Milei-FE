@@ -58,7 +58,7 @@ export function DogsPage() {
 
               <Link href={dog.chatLink}>
                 <button className="bg-blue_1 text-white flex items-center gap-2 px-6 py-2 md:px-8 md:py-2 hover:bg-blue_1/90 transition-colors duration-200">
-                  <p className="font-semibold text-sm">Continue to chat</p>
+                  <p className="font-semibold text-sm">Únete al chat</p>
                   <svg
                     width="17"
                     height="17"
