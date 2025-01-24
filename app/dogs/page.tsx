@@ -1,4 +1,4 @@
-import { DogsPage } from "@/components/Dogs/page";
+import { DogsPage } from '@/components/Dogs/page';
 
 function Page() {
   return <DogsPage />;

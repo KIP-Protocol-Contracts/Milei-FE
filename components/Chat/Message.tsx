@@ -1,5 +1,5 @@
-import moment from "moment";
-import Image, { StaticImageData } from "next/image";
+import moment from 'moment';
+import Image, { StaticImageData } from 'next/image';
 
 export const UserMessage = ({ msg }: { msg: string }) => {
   return <div className="p-4 rounded-md bg-light-yellow text-sm">{msg}</div>;
@@ -14,9 +14,9 @@ export const BotMessage = ({
   name: string;
   pfp: string | StaticImageData;
 }) => {
-  if (!msg || msg === "") return null;
+  if (!msg || msg === '') return null;
 
-  const currentTime = moment().format("hh:mm A");
+  const currentTime = moment().format('hh:mm A');
 
   return (
     <div className="flex gap-2">
