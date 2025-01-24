@@ -81,6 +81,9 @@ export function ChatPage() {
         {id === 'milei' && (
           <h1 className="font-bold text-3xl p-3">Pregunta al profesor Milai</h1>
         )}
+        {id !== 'milei' && (
+          <h1 className="font-bold text-3xl p-3">Chat whith {id}</h1>
+        )}
         <div
           className="flex flex-col flex-grow overflow-y-auto py-4 gap-4"
           ref={containerRef}
