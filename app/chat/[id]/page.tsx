@@ -10,7 +10,7 @@ async function Page({ params, searchParams }: any) {
   const { sessionId } = await searchParams;
 
   // TODO: Remove later
-  console.log(id)
+  console.log(id) 
 
   
   const resp = await getChatHistory({ session_id: sessionId });
