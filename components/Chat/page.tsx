@@ -51,6 +51,7 @@ const bgBots = (name: string): string | undefined => {
 
 const fullNames = {
   milai: 'YaitSiu',
+  yaitsiu: 'YaitSiu',
   borget: 'Sebastian Borget'
 };
 
