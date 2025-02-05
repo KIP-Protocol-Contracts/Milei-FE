@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import React from 'react';
-import Milai from '@/public/images/yaitsiu.png';
+import Borget from '@/public/images/sebastian_borget.jpg';
 import Image from 'next/image';
 import { Strips } from '../Strips';
 import { v4 as uuidv4 } from 'uuid';
 
-export const MilaiPage = () => {
+export const BorgetPage = () => {
   const newSess = uuidv4();
 
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-4 p-4">
       <div className="relative mb-6 md:mb-10 text-center">
         <h1 className="font-bold text-2xl md:text-4xl">
-          Ask YaitSiu
+          Ask Borget
         </h1>
         <div className="absolute right-0 mt-2 md:mt-3 w-[80px] md:w-[110px]">
           <Strips />
@@ -21,10 +21,10 @@ export const MilaiPage = () => {
 
       <div className="relative">
         {/* <div className="absolute left-6 md:left-11 bottom-0 top-0 right-6 md:right-12 border-4 border-blue_1 shadow-lg shadow-mil_orange" /> */}
-        <Image src={Milai} alt="milai" height={400} className="border-4 border-blue_1 shadow-lg shadow-mil_orange"/>
+        <Image src={Borget} alt="borget" height={400} className="border-4 border-blue_1 shadow-lg shadow-mil_orange"/>
       </div>
 
-      <Link href={`/chat/milai?sessionId=${newSess}`} className="mt-2">
+      <Link href={`/chat/borget?sessionId=${newSess}`} className="mt-2">
         <button className="bg-blue_1 text-white flex items-center gap-2 px-6 py-2 md:px-8 md:py-2 hover:bg-blue_1/90 transition-colors duration-200">
           <p className="font-semibold text-sm md:text-base">Chat here</p>
           <svg

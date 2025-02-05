@@ -5,6 +5,8 @@ import Lucas from '@/public/images/lucas.png';
 import Milton from '@/public/images/milton.png';
 import Murray from '@/public/images/murray.png';
 import Milai from '@/public/images/Javier Milai.png';
+import YaitSiu from '@/public/images/yaitsiu.png';
+import Borget from '@/public/images/sebastian_borget.jpg';
 import { BotMessage, UserMessage } from './Message';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { SuggestedQuestion } from './SuggestedQuestion';
@@ -23,6 +25,10 @@ const bots = (name: string): StaticImageData | undefined => {
       return Murray;
     case 'milai':
       return Milai;
+    case 'yaitsiu':
+      return YaitSiu;
+    case 'borget':
+      return Borget;
   }
 };
 
@@ -36,7 +42,16 @@ const bgBots = (name: string): string | undefined => {
       return 'bg-background';
     case 'milai':
       return 'bg-mil_orange';
+    case 'yaitsiu':
+      return '';
+    case 'borget':
+      return '';
   }
+};
+
+const fullNames = {
+  milai: 'YaitSiu',
+  borget: 'Sebastian Borget'
 };
 
 export function ChatPage() {
@@ -57,13 +72,13 @@ export function ChatPage() {
 
   const sessionId = searchParams.get('sessionId');
 
-  const [agent, setAgent] = useState<string>('');
+  const [agent, setAgent] = useState<string>("");
 
   useEffect(() => {
     if (typeof id === 'string') {
-      setAgent(id === 'milai' ? 'milai' : id);
-    } else {
-      setAgent('milai');
+      if (id === 'milai') setAgent('yaitsiu');
+      else
+      setAgent(id);
     }
   }, [id]);
 
@@ -87,24 +102,24 @@ export function ChatPage() {
     }
   }, [messages, answerStream]);
 
-  const capitalizeFirstLetter = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
+  // const capitalizeFirstLetter = (str: string) => {
+  //   return str.charAt(0).toUpperCase() + str.slice(1);
+  // };
 
   return (
     <div className="h-screen p-4 md:p-10">
       <div className="flex flex-col h-full border-2 border-blue_1 bg-background shadow-md shadow-mil_orange">
         <Header name={id as string} />
-        {id === 'milai' && (
+        {/* {(id === 'milai' || id === 'borget') && ( */}
           <h1 className="font-bold text-xl md:text-3xl p-3">
-            Pregunta al profesor Milai
+            Ask {fullNames[agent as keyof typeof fullNames] || agent}
           </h1>
-        )}
-        {id !== 'milai' && (
+        {/* )} */}
+        {/* {id !== 'milai' && (
           <h1 className="font-bold text-xl md:text-3xl p-3">
             Charla con {capitalizeFirstLetter(agent)}
           </h1>
-        )}
+        )} */}
         <div
           className="flex flex-col flex-grow overflow-y-auto py-4 gap-4 px-2 md:px-4"
           ref={containerRef}
@@ -125,7 +140,7 @@ export function ChatPage() {
                 {agent && (
                   <BotMessage
                     msg={msg.msg}
-                    name={agent}
+                    name={fullNames[agent as keyof typeof fullNames] || agent}
                     pfp={bots(agent) as StaticImageData}
                     bgColor={bgBots(agent)}
                   />
@@ -136,7 +151,7 @@ export function ChatPage() {
           <div className="px-2 md:px-3">
             <BotMessage
               msg={answerStream}
-              name={agent}
+              name={fullNames[agent as keyof typeof fullNames] || agent}
               pfp={bots(agent) as StaticImageData}
               bgColor={bgBots(agent)}
             />
@@ -167,7 +182,7 @@ export function ChatPage() {
               <input
                 type="text"
                 className="grow bg-transparent border-none outline-none"
-                placeholder="Pregúntame cualquier cosa..."
+                placeholder="Ask me anything"
                 value={userMsg}
                 onChange={(e) => setUserMsg(e.target.value)}
                 onKeyDown={(e) => {

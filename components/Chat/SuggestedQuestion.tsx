@@ -4,8 +4,8 @@ import { useParams, useSearchParams } from 'next/navigation';
 import { useDogsChatProvider } from './Provider';
 
 const suggQuests = [
-  '¿Cómo están los perros?',
-  '¿Cuál de las obras de Mises debería leer primero?',
+  'Who are you?',
+  'What is your hobby?',
 ];
 
 export const SuggestedQuestion = () => {

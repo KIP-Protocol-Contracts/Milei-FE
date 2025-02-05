@@ -28,20 +28,19 @@ export const BotMessage = ({
     <div className="flex gap-2">
       <div className="relative h-[46px] w-[46px] flex-shrink-0">
         <div
-          className={`absolute inset-0.5 ${bgColor} border border-blue_1`}
+          className={`absolute inset-0.5 ${bgColor}`}
         ></div>
         <Image
           src={pfp}
           alt="dog1"
           width={46}
           height={46}
-          className="relative"
+          className="relative border border-blue_1"
         />
       </div>
       <div className="w-full">
         <div className="h-[46px] flex items-center gap-2">
           <p className="font-semibold capitalize">
-            {name == 'milai' && 'Profesor'}&nbsp;
             {name}
           </p>
           <span className="text-[#BCBEC7] text-[10px]">{currentTime}</span>

@@ -1,13 +1,18 @@
 import React from 'react';
 import { dogsList } from '../Dogs/page';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
-import Milai from '@/public/images/Javier Milai.png';
+// import { useParams } from 'next/navigation';
+import Milai from '@/public/images/yaitsiu.png';
+import Borget from '@/public/images/sebastian_borget.jpg';
 import { Strips } from '../Strips';
 
 export const Header = ({ name }: { name: string }) => {
   if (name === 'milai') {
     return <MilaiHeader />;
+  }
+
+  if (name === 'borget') {
+    return <BorgetHeader />
   }
 
   return <DogsHeader />;
@@ -47,7 +52,7 @@ export const DogsHeader = () => {
 };
 
 export const MilaiHeader = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   return (
     <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 border-b-2 border-b-blue_1 p-4">
       <div className="w-full md:w-[300px]">
@@ -60,9 +65,34 @@ export const MilaiHeader = () => {
           alt="dog1"
           width={100}
           height={100}
+          className="rounded-md relative z-1 border border-black"
+        />
+        <p className="font-bold capitalize">YaitSiu</p>
+      </div>
+      <div className="w-full md:w-[300px]">
+        <Strips />
+      </div>
+    </div>
+  );
+};
+
+export const BorgetHeader = () => {
+  // const { id } = useParams();
+  return (
+    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 border-b-2 border-b-blue_1 p-4">
+      <div className="w-full md:w-[300px]">
+        <Strips />
+      </div>
+      <div className="relative flex flex-col items-center gap-4">
+        <div className="absolute left-2 right-2 top-2 h-[80px] z-0"></div>
+        <Image
+          src={Borget}
+          alt="dog1"
+          width={100}
+          height={100}
           className="rounded-md relative z-1"
         />
-        <p className="font-bold capitalize">Profesor {id}</p>
+        <p className="font-bold capitalize">Sebastian Borget</p>
       </div>
       <div className="w-full md:w-[300px]">
         <Strips />

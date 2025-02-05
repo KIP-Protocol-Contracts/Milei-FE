@@ -83,7 +83,7 @@ export default function ChatProvider({
   }, [chatHistory]);
 
   const { sendMessage, lastMessage } = useWebSocket(
-    id === 'milai'
+    (id === 'milai' || id == 'borget')
       ? process.env.NEXT_PUBLIC_MILEI_CHAT_WS!
       : process.env.NEXT_PUBLIC_DOG_CHAT_WS!
   );

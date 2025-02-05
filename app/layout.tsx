@@ -11,7 +11,7 @@ const kodeMono = Kode_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Milai's Loyal Companion",
+  title: "Yat's Loyal Companion",
 };
 
 export default function RootLayout({
