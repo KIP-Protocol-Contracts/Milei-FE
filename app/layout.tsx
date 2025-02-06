@@ -11,7 +11,7 @@ const kodeMono = Kode_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yat's Loyal Companion",
+  title: "Ask Borget",
 };
 
 export default function RootLayout({
